@@ -750,3 +750,103 @@ def SpectrumHSL(segments=11,
     return spectrum
 
 spectrumHSL=SpectrumHSL()
+
+def CSV2NetworkxGraphs(dict_mlvar):
+    """Production of dictionary with
+    `networkx.classes.graph.Graph` objects using CSV
+    files resulting from R-mlVAR function.
+    
+    Parameters
+    ----------
+    dict_mlvar: dict
+        Dictionary in which the keys are the type of 
+        mlVAR (temporal, between or contamporaneous).
+        These are the raw result of the mlVAR R library, 
+        extracted from R object:
+        `mlVAR$summary()[[<type of network>]]`
+    
+    Returns
+    -------
+    dict_graphs: dict
+    
+    """
+    dict_graphs = {}
+    for key, df_mlvar in dict_mlvar.items():
+        constructs = sorted(df_mlvar
+                      .iloc[:,:2]
+                      .stack()
+                      .value_counts()
+                      .keys()
+                     )
+        constructs_combinations = df_mlvar.values
+
+        edges = {(c0,c1):float(v)
+                 for c0,c1,v
+                 in constructs_combinations
+                }
+
+        nodes = {q:{}
+                 for i, q 
+                 in enumerate(constructs)
+                }
+
+        fontsize_node = 9.5
+
+        max_distance = max([d for d in edges.values()])
+
+        edges = {k:{'similarity':v,
+                    'absolute_similarity': abs(v),
+                   }
+                 for k,v
+                 in edges.items()
+                }
+        directional = (True
+                       if key=='temporal'
+                       else
+                       False
+                      )
+        g = GraphBuilding(nodes,
+                          edges,
+                          directional=directional,
+                         )
+
+        betweenness = nx.betweenness_centrality(g,
+                                                endpoints=True,
+                                                weight='absolute_similarity',
+                                               )
+        closeness = nx.closeness_centrality(g,
+                                            distance='absolute_similarity',
+                                            wf_improved=True,
+                                           )
+
+        strength = {node:StrengthCentrality(g,
+                                            node,
+                                            'absolute_similarity',
+                                           )
+                    for node
+                    in g.nodes()
+                   }
+        nodes_centralities = {n:{name:c[n] 
+                                 for name, c
+                                 in [['betweenness', betweenness],
+                                     ['strength', strength],
+                                     ['closeness', closeness],
+                                    ]
+                                } for n 
+                              in nodes.keys()
+                             }
+        g = GraphBuilding(nodes_centralities,
+                          edges,
+                          directional=(True
+                                       if key=='temporal' 
+                                       else
+                                       False
+                                      ),
+                         )
+        key = (key
+               if key!='between'
+               else
+               f'{key}-subjects'
+              )
+        dict_graphs[key] = g
+    return dict_graphs

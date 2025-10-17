@@ -148,22 +148,22 @@ par(mfrow=c(2, 4))
 for (i in seq_along(constructs))
 {
   construct <- constructs[[i]]
-  g <- density(BRC_data[[construct]])
-  
-  plot(g
-       , ylab='density'
-       , xlab="values"
-       , main=construct
-  )
-  polygon(g, col=colours[[i]])
-  xfit <- seq(min(g$x)
-              , max(g$x)
+  data <- BRC_data[[construct]]
+  g <- hist(data
+            , breaks=14
+            , col=colours[[i]]
+            , xlab="value"
+            , main=construct
+            )
+  xfit <- seq(min(data)
+              , max(data)
               , length=50
   ) 
   yfit <- dnorm(xfit
-                , mean=mean(g$x)
-                , sd=sd(g$x)
+                , mean=mean(data)
+                , sd=sd(data)
   )
+  yfit <- yfit * diff(g$mids[1:2]) * length(data)
   lines(xfit
         , yfit
         , col='black'
@@ -334,7 +334,7 @@ for (i in mapply(list,
   qgraph(xi_detrend
          , filetype='pdf'
          , filename=file.path(out_folder
-                              , glue('mlvar_{type}'
+                              , glue('mlvar_{type}_originals'
                               )
          )
   )
@@ -352,7 +352,7 @@ for (type in c('contemporaneous'
 {
   write.csv(s[[type]],
             file.path(out_folder,
-                      glue('mlvar_{type}.csv')
+                      glue('mlvar_{type}_originals.csv')
                       
             ),
             row.names=F,
@@ -491,22 +491,22 @@ par(mfrow=c(2, 4))
 for (i in seq_along(constructs))
 {
   construct <- constructs[[i]]
-  g <- density(BRC_data[[construct]])
-  
-  plot(g
-       , ylab='density'
-       , xlab="values"
-       , main=construct
+  data <- BRC_data[[construct]]
+  g <- hist(data
+            , breaks=14
+            , col=colours[[i]]
+            , xlab="value"
+            , main=construct
   )
-  polygon(g, col=colours[[i]])
-  xfit <- seq(min(g$x)
-              , max(g$x)
+  xfit <- seq(min(data)
+              , max(data)
               , length=50
   ) 
   yfit <- dnorm(xfit
-                , mean=mean(g$x)
-                , sd=sd(g$x)
+                , mean=mean(data)
+                , sd=sd(data)
   )
+  yfit <- yfit * diff(g$mids[1:2]) * length(data)
   lines(xfit
         , yfit
         , col='black'
@@ -671,7 +671,7 @@ for (i in mapply(list,
   qgraph(xi_detrend
          , filetype='pdf'
          , filename=file.path(out_folder
-                              , glue('mlvar_{type}'
+                              , glue('mlvar_{type}_imputed'
                                      )
                               )
          )
@@ -689,7 +689,7 @@ for (type in c('contemporaneous'
   {
   write.csv(s[[type]],
             file.path(out_folder,
-                      glue('mlvar_{type}.csv')
+                      glue('mlvar_{type}_imputed.csv')
                       
                                   ),
             row.names=F,

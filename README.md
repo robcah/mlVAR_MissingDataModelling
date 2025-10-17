@@ -7,7 +7,7 @@ Supporting materials for paper: Unsupervised identification of significant linea
 1. Install environment:\
 `conda env create --file mlvar3datasets.yaml`
 
-1. Install R and RStudio
+1. Install R and RStudio (recommended)
 
 1. in RStudio run the file:
 `BRC_mlVAR_Analysis_MultipleDatasets.R`
@@ -16,7 +16,11 @@ Supporting materials for paper: Unsupervised identification of significant linea
 `conda activate mlvar3datasets`\
 `jupyter notebook`
 
-1. Follow the jupyter notebook `mlVAR3Datasets_MissingDataModelling.ipynb` for more instructions:
+1. Follow the instructions from jupyter notebook `mlVAR3Datasets_MissingDataModelling.ipynb` to produce the data with imputation and synthetic constructs modelling gaps.
+
+1.Run R-code `BRC_mlVAR_Analysis_MultipleDatasets.R` either in R or RStudio. This produce two sets of mlVAR networks for the original and the imputed data, each set consist of networks: temporal, between-subjects and contemporaneous.
+
+1. Follow the instructions from jupyter notebook `mlVAR3datasets_PsyNetworksPlot.ipynb` to plot results of both mlVAR set of networks.
 
 
 
