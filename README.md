@@ -4,9 +4,9 @@
 
 Supporting materials for paper: _A network analysis of psychosis symptoms from multiple ecological momentary assessment studies_.
 
-1. Install anaconda, R and RStudio (recommended)
+1. Install Anaconda, R and RStudio (recommended)
 
-1. From an anaconda prompt install environment:\
+1. From an Anaconda prompt install environment:\
 `conda env create --file mlvar3datasets.yaml`
 
 1. Activate environment and run Jupyter:\
