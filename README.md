@@ -20,7 +20,7 @@ Supporting materials for paper: _A network analysis of psychosis symptoms from m
 
 1. Run R-code `BRC_mlVAR_Analysis_MultipleDatasets.R` either in R or RStudio. This produce two sets of mlVAR networks for the original and the imputed data, each set consist of networks: temporal, between-subjects and contemporaneous.
 
-1. Follow the instructions from jupyter notebook `mlVAR3datasets_PsyNetworksPlot.ipynb` to plot results of both mlVAR set of networks.
+1. Run and follow the instructions from jupyter notebook `mlVAR3datasets_PsyNetworksPlot.ipynb` to plot results of both mlVAR set of networks.
 
 
 
