@@ -9,7 +9,7 @@ Supporting materials for paper: _A network analysis of psychosis symptoms from m
 1. From an anaconda prompt install environment:\
 `conda env create --file mlvar3datasets.yaml`
 
-1. Activate environment:\
+1. Activate environment and run Jupyter:\
 `conda activate mlvar3datasets`\
 `jupyter notebook`
 
