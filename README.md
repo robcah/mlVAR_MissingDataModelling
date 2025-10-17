@@ -18,7 +18,7 @@ Supporting materials for paper: Unsupervised identification of significant linea
 
 1. Follow the instructions from jupyter notebook `mlVAR3Datasets_MissingDataModelling.ipynb` to produce the data with imputation and synthetic constructs modelling gaps.
 
-1.Run R-code `BRC_mlVAR_Analysis_MultipleDatasets.R` either in R or RStudio. This produce two sets of mlVAR networks for the original and the imputed data, each set consist of networks: temporal, between-subjects and contemporaneous.
+1. Run R-code `BRC_mlVAR_Analysis_MultipleDatasets.R` either in R or RStudio. This produce two sets of mlVAR networks for the original and the imputed data, each set consist of networks: temporal, between-subjects and contemporaneous.
 
 1. Follow the instructions from jupyter notebook `mlVAR3datasets_PsyNetworksPlot.ipynb` to plot results of both mlVAR set of networks.
 
