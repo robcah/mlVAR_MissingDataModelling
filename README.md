@@ -1,6 +1,6 @@
 # mlVAR Analysis of three datasets modelling missing data
 ## Code for replication
-### Data will be accesible by request at discretion of the University of Manchester
+* Data will be accesible by request at discretion of the University of Manchester
 
 Supporting materials for paper: _A network analysis of psychosis symptoms from multiple ecological momentary assessment studies_.
 
